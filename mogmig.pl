@@ -96,7 +96,7 @@ $SIG{INT} = sub { $terminate = 1; };
 
 sub worker_main {
 	my $db = setup_sqlite;
-	my ($master_pid, $pipe, $print_status) = @_;
+	my ($master_pid, $pipe) = @_;
 	select_sleep rand(2); # wait up to two seconds to add some jitter
 
 	while (<$pipe>) {
@@ -196,7 +196,7 @@ sub fork_worker {
 	if ($pid == 0) {
 		$pipe->reader();
 		close $_ foreach values %workers; # close other pipes
-		worker_main $master_pid, $pipe, (length(keys %workers) == 1);
+		worker_main $master_pid, $pipe;
 		exit;
 	} else {
 		$pipe->writer();
