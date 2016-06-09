@@ -4,7 +4,8 @@
 # Licensed for use and redistribution under the same terms as Perl itself.
 
 # FIXME: better handling of child process crashes
-# FIXME: status reporting - I currently look at the SQLite database for status info
+# FIXME: status reporting - I currently look at the SQLite database for status info (see status.pl)
+
 use strict;
 use warnings;
 
@@ -107,7 +108,7 @@ sub worker_main {
 
 		### UNCOMMENT THIS NEXT LINE IF YOU WANT TO RENAME THE
 		### FILES/MOVE THEM TO SUBDIRECTORIES AS YOU GO
-		s,/(.*(..))\.,/$2/$1.,; # perform filename substitution on the destination file
+		#s,/(.*(..))\.,/$2/$1.,; # perform filename substitution on the destination file
 
 		my $local_path = $_; # name of the destination file on the local filesystem
 
